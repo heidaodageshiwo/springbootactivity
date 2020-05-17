@@ -1,0 +1,25 @@
+spring:
+  #数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/zq_activiti02?serverTimezone=UTC&characterEncoding=utf8&useSSL=false
+    username: root
+    password: zhangqiang
+    driver-class-name:  com.mysql.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+    show-sql: true
+
+  activiti:
+    # 自动部署验证设置:true-开启（默认）、false-关闭
+    check-process-definitions: false
+    #配置项可以设置流程引擎启动和关闭时数据库执行的策略
+#    database-schema-update: true
+    database-schema-update: true
+    #保存历史数据级别设置为full最高级别，便于历史数据的追溯
+    history-level: full
+
+  main:
+    allow-bean-definition-overriding: true

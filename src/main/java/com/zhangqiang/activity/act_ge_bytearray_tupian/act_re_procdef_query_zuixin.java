@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,21 @@ public class act_re_procdef_query_zuixin {
     @Autowired
     RepositoryService repositoryService;
 //    这里我们通过流程定义的KEY查询返回一个集合。然后我们输入流程定义表的部分关键字段；
+
+  // * 部署流程定义
+  @RequestMapping("/deployWithClassPath")
+  public String deployWithClassPath() {
+    Deployment deployment= repositoryService.createDeployment()
+        .addClasspathResource("mysencondprocess/MySencondProcess.bpmn")
+        .addClasspathResource("mysencondprocess/MySencondProcess.png")
+        .name("MySencondProcess流程")
+        .deploy();
+    System.out.println("流程部署ID:"+deployment.getId());
+    System.out.println("流程部署Name:"+deployment.getName());
+    return "deployWithClassPath";
+  }
+
+
     @RequestMapping("/procdef_list_new")
     /**
      * 查询最新版本的流程定义

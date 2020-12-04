@@ -97,7 +97,7 @@ public class IdentityTest {
    */
   @RequestMapping("/testSaveMembership")
   public String testSaveMembership() {
-    identityService.createMembership("张三", "dev");
+//    identityService.createMembership("张三", "dev");
     identityService.createMembership("王五", "dev");
     return "testSaveMembership";
 
